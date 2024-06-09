@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+        body {
+            background-color: #fffacd; /* Light yellow color */
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome Boss</h1>
+    <p>Just a demo page!</p>
+
+</div>
+
+
+    <script>
+        $(document).ready(function() {
+            var message = '@TempData["Message"]';
+            var messageType = '@TempData["MessageType"]';
+            if (message) {
+                if (messageType === "success") {
+                    toastr.success(message);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+@model UserLogin.Models.LoginModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DHL</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-image: url('/background0.jpg'); /* path of background image */
+            background-size: cover; /* cover the container with the background image */
+            background-position: center; /* center the background image */
+            font-family: Monaco, monospace; /* Monaco font */
+            margin: 0;
+            padding: 0;
+        }
+
+        .top-background {
+            background-image: url('/background.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 75vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+            border-radius: 20px;
+        }
+
+        .login-container {
+            background-color: rgba(255, 243, 205, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .login-form h2 {
+            margin-bottom: 30px;
+            text-align: center;
+            font-family: Helvetica, sans-serif;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 50px;
+            width: 100%;
+        }
+
+        .form-group {
+            background-color: #f1807e;
+            padding: 5px;
+            border-radius: 50px;
+            margin-bottom: 15px;
+        }
+
+        .btn-login {
+            border-radius: 50px;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .login-form label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 top-background">
+                <div class="login-container">
+                    <div class="login-form">
+                        <h2>Welcome to DHL</h2>
+                        <form asp-action="Login" method="post">
+                            <div class="form-group">
+                                <input asp-for="Username" class="form-control" placeholder="Username" required>
+                                <span asp-validation-for="Username" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Password" type="password" class="form-control" placeholder="Password" required>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            @if (!string.IsNullOrEmpty(TempData["Message"] as string))
+                            {
+                                <div class="alert alert-@TempData["MessageType"]">
+                                    @TempData["Message"]
+                                </div>
+                            }
+                            <button type="submit" class="btn btn-danger btn-block btn-login">Login</button>
+                        </form>
+                        <div class="text-center mt-3">
+                            <a href="#" class="text-secondary">Forgot password?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
